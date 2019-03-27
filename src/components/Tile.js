@@ -6,8 +6,11 @@ class Tile extends React.Component{
 
 
     render(){
+
+        const { value } = this.props;
+
         return(
-            <input type="number" min="1" max="9"/>
+            <input type="number" min="1" max="9" value={value}/>
         )
     }
 

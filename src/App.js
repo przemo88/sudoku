@@ -22,7 +22,7 @@ class App extends React.Component{
     return(
       <div className="App">
       <h1>Sudoku</h1>
-      <Board value={this.props.initialBoard}/>
+      <Board value={this.state.initialBoard}/>
       <div className="buttons">
           <button>Check</button>
           <button>New Game</button>

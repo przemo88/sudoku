@@ -1,12 +1,8 @@
 import React from 'react';
-import sudoku from 'sudoku-umd';
 import Tile from './Tile';
-import App from '../App';
 
 
-let tab = sudoku.generate('easy');
-let arr = tab.split("");
-console.log();
+
 
  class Board extends React.Component {
   constructor(props) {
@@ -14,13 +10,24 @@ console.log();
     
 }
   render() {
-    return (
-      <>
-        {arr.map(a => {
-          return <Tile/>
-        })}
-     </>
-    );
+    
+    {
+      return (
+        <div>
+          {this.props.value.map(a => {
+            if(a === '.')
+            {
+              return <Tile value={this.setState.value}/>
+            }
+            else if(a != '.')
+            {
+              return <Tile value={a}/>
+            }
+          })}
+       </div>
+      );
+    }
+   
   }
 }
 
