@@ -13,7 +13,7 @@ class App extends React.Component{
 
    this.state = {
     initialBoard : arr,
-    board: ''
+    board: [].concat(arr)
   }
 }
 
@@ -22,7 +22,7 @@ class App extends React.Component{
     return(
       <div className="App">
       <h1>Sudoku</h1>
-      <Board value={this.state.initialBoard}/>
+      <Board value={this.state.board}/>
       <div className="buttons">
           <button>Check</button>
           <button>New Game</button>
