@@ -1,5 +1,7 @@
 import React from 'react';
+import sudoku from 'sudoku-umd';
 import Tile from './Tile';
+import App from '../App';
 
  class Board extends React.Component {
   constructor(props) {
