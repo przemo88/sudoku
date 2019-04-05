@@ -17,6 +17,10 @@ class App extends React.Component{
   }
 }
 
+handleSubmit(board) {
+  alert(board.value);
+  //event.preventDefault();
+}
  
   render(){
     return(
@@ -24,7 +28,7 @@ class App extends React.Component{
       <h1>Sudoku</h1>
       <Board value={this.state.board}/>
       <div className="buttons">
-          <button>Check</button>
+          <button onClick={this.handleSubmit}>Check</button>
           <button>New Game</button>
           <button>Solve</button>
           <button>Restart</button>

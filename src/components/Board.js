@@ -19,12 +19,13 @@ onValueChange(tile, newValue){
 
   this.setState( { board});
 }
+
   render() {
     
       return (
         <div>
           {this.state.board.map((a,i) => {
-            return <Tile key = {i} index = {i} value = {a} onChange = {this.onValueChange} />
+            return <Tile key = {i} index = {i} value = {a} onChange = {this.onValueChange.bind(this)} />
           })}
        </div>
       );
