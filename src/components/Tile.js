@@ -11,7 +11,7 @@ class Tile extends React.Component{
         const readOnly = (value !== '.');
 
         return(
-            <input type="number" min="1" max="9"
+        <input type="number" min="1" max="9" readonly
              value={value === "." ? " " : value}
              onChange = {(e) => {
                  this.props.onChange(this.props, e.target.value);

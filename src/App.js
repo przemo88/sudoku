@@ -13,24 +13,50 @@ class App extends React.Component{
 
    this.state = {
     initialBoard : arr,
-    board: [].concat(arr)
+    board: [].concat(arr),
+    solved: sudoku.solve(arr.join(''))
   }
 }
 
-handleSubmit(board) {
-  alert(board.value);
-  //event.preventDefault();
+solve(){
+  return sudoku.solve(this.state.initialBoard.join(''));
+}
+
+handleSubmit(){
+  const currentBoard = this.state.board.join('');
+  const { solved } = this.state;
+
+  if(currentBoard === solved){
+    alert('Congratulations');
+  }
+  else{
+    alert("Try again");
+  }
+}
+
+solveBoard(){
+  this.setState({
+    board: [...this.state.solved]
+  })
+}
+
+onValueChange(tile, newValue){
+  const { board } = this.state;
+
+  board[tile.index] = newValue;
+
+  this.setState( { board});
 }
  
   render(){
     return(
       <div className="App">
       <h1>Sudoku</h1>
-      <Board value={this.state.board}/>
+      <Board value={this.state.board} onValueChange = {this.onValueChange.bind(this)}/>
       <div className="buttons">
-          <button onClick={this.handleSubmit}>Check</button>
+          <button onClick={() => this.handleSubmit()}>Check</button>
           <button>New Game</button>
-          <button>Solve</button>
+          <button onClick= {() => this.solveBoard()}>Solve</button>
           <button>Restart</button>
       </div>
    </div>
