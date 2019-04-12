@@ -1,22 +1,34 @@
 import React from 'react';
 import sudoku from 'sudoku-umd';
 import Board from './components/Board';
+import styles from './components/Buttons.scss';
 
-let tab = sudoku.generate('easy');
-let arr = tab.split("");
 
+function generateTable(){
+  let tab = sudoku.generate('easy');
+  let arr = tab.split("");
+  console.log(tab);
+  return arr;
+}
 
 class App extends React.Component{
 
+
+
  constructor(){
-   super();
+  super();
+
+  let arr = generateTable();
 
    this.state = {
     initialBoard : arr,
     board: [].concat(arr),
-    solved: sudoku.solve(arr.join(''))
+    solved: sudoku.solve(arr.join('')),
   }
 }
+
+
+
 
 solve(){
   return sudoku.solve(this.state.initialBoard.join(''));
@@ -40,12 +52,27 @@ solveBoard(){
   })
 }
 
+restartBoard(){
+  this.setState({
+    board: [...this.state.initialBoard]
+  })
+}
+
 onValueChange(tile, newValue){
   const { board } = this.state;
 
   board[tile.index] = newValue;
 
   this.setState( { board});
+}
+
+newGame(){
+
+  let arr = generateTable();
+
+  this.setState({
+    board: [].concat(arr)
+  })
 }
  
   render(){
@@ -54,10 +81,10 @@ onValueChange(tile, newValue){
       <h1>Sudoku</h1>
       <Board value={this.state.board} onValueChange = {this.onValueChange.bind(this)}/>
       <div className="buttons">
-          <button onClick={() => this.handleSubmit()}>Check</button>
-          <button>New Game</button>
-          <button onClick= {() => this.solveBoard()}>Solve</button>
-          <button>Restart</button>
+          <button onClick= {() => this.handleSubmit()} className="btn">Check</button>
+          <button onClick= {() => this.newGame()} className="btn">New Game</button>
+          <button onClick= {() => this.solveBoard()} className="btn">Solve</button>
+          <button onClick= {()=> this.restartBoard()} className="btn">Restart</button>
       </div>
    </div>
     )
