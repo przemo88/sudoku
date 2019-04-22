@@ -1,5 +1,4 @@
 import React from 'react';
-import sudoku from 'sudoku-umd';
 import Tile from './Tile';
 import App from '../App';
 import styles from './Board.scss';
@@ -15,9 +14,15 @@ import styles from './Board.scss';
     
       return (
         <div className="container">
-          {this.props.value.map((a,i) => {
-              
-            return <Tile key = {i} index = {i} value = {a} onChange = {this.props.onValueChange} />
+          {this.props.board.map((value,i) => {
+            return <Tile
+             key = {i} 
+             index = {i} 
+             value = {value} 
+             onChange = {this.props.onValueChange}
+             readOnly = {this.props.initialBoard[i] !=='.'}
+             breakline = { i % 9 == 0 ?  '<br/>' : value}
+             />
           })}
        </div>
       );

@@ -18,17 +18,26 @@ class App extends React.Component{
  constructor(){
   super();
 
+  this.state = this.newGame();
+
+ }
+
+
+
+newGame(){
+
   let arr = generateTable();
 
-   this.state = {
-    initialBoard : arr,
+  return{
+    initialBoard: arr,
     board: [].concat(arr),
-    solved: sudoku.solve(arr.join('')),
+    solved: sudoku.solve(arr.join(''))
   }
 }
 
-
-
+newGameClicked(){
+  this.setState(this.newGame());
+}
 
 solve(){
   return sudoku.solve(this.state.initialBoard.join(''));
@@ -66,23 +75,14 @@ onValueChange(tile, newValue){
   this.setState( { board});
 }
 
-newGame(){
-
-  let arr = generateTable();
-
-  this.setState({
-    board: [].concat(arr)
-  })
-}
- 
-  render(){
+render(){
     return(
       <div className="App">
       <h1>Sudoku</h1>
-      <Board value={this.state.board} onValueChange = {this.onValueChange.bind(this)}/>
+      <Board board={this.state.board} initialBoard={this.state.initialBoard} onValueChange = {this.onValueChange.bind(this)}/>
       <div className="buttons">
           <button onClick= {() => this.handleSubmit()} className="btn">Check</button>
-          <button onClick= {() => this.newGame()} className="btn">New Game</button>
+          <button onClick= {() => this.newGameClicked()} className="btn">New Game</button>
           <button onClick= {() => this.solveBoard()} className="btn">Solve</button>
           <button onClick= {()=> this.restartBoard()} className="btn">Restart</button>
       </div>

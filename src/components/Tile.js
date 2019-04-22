@@ -5,9 +5,9 @@ import styles from './Tile.scss';
 
 class Tile extends React.Component{
 
-     breakline(count){
-        if(count == 9){
-            return <br/>
+     breakline(index){
+        if(index % 9 == 0){
+            alert('</br>')
         }
     }
 
@@ -15,8 +15,8 @@ class Tile extends React.Component{
   
     render(){
 
-        const { value } = this.props;
-        //const readOnly = (value !== '.');
+        const { value, readOnly, index, breakline } = this.props;
+
     
        
         let count = 0;
@@ -27,15 +27,16 @@ class Tile extends React.Component{
           
              <input type="number" min="1" max="9" className='item'
              value={value === "." ? "" : value}
+             disabled={readOnly}
    
              onChange = {(e) => {
                  this.props.onChange(this.props, e.target.value);
              }}
             
              />
-         
+          
              </div>
-  
+    
              )
         }
     }
