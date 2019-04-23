@@ -2,6 +2,7 @@ import React from 'react';
 import sudoku from 'sudoku-umd';
 import Board from './components/Board';
 import styles from './components/Buttons.scss';
+import styles2 from './components/App.scss';
 
 
 function generateTable(){
@@ -12,8 +13,6 @@ function generateTable(){
 }
 
 class App extends React.Component{
-
-
 
  constructor(){
   super();
@@ -78,7 +77,7 @@ onValueChange(tile, newValue){
 render(){
     return(
       <div className="App">
-      <h1>Sudoku</h1>
+      <h1 className="title">Sudoku</h1>
       <Board board={this.state.board} initialBoard={this.state.initialBoard} onValueChange = {this.onValueChange.bind(this)}/>
       <div className="buttons">
           <button onClick= {() => this.handleSubmit()} className="btn">Check</button>

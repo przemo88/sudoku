@@ -21,7 +21,6 @@ import styles from './Board.scss';
              value = {value} 
              onChange = {this.props.onValueChange}
              readOnly = {this.props.initialBoard[i] !=='.'}
-             breakline = { i % 9 == 0 ?  '<br/>' : value}
              />
           })}
        </div>
