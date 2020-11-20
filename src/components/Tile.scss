@@ -1,8 +1,22 @@
 .container{
     display: flex;
-    max-width: 500px;
+    max-width: 550px;
     flex-wrap: wrap;
     margin: 0 auto;
+
+    @media(max-width: 1200px) and (min-width: 992px){
+        max-width: 450px; 
+    }
+
+    @media(max-width: 991px) and (min-width: 768px){
+        max-width: 450px; 
+    }
+
+    @media(max-width: 767px){
+        max-width: 335px;  
+    }
+
+
 }
 
 .item{
@@ -11,4 +25,16 @@
     height: 50px;
     font-size: 25px;
     text-align: center;
+
+    @media(max-width: 1200px) and (min-width: 768px){
+        width: 40px;
+        height: 40px;
+    }
+
+    @media(max-width: 767px){
+        width: 30px;
+        height: 30px;
+        padding: 0;
+    }
+
 }
